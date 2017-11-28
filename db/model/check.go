@@ -1,7 +1,11 @@
 package model
 
 type Check struct {
-	id     int
-	url_id int
-	count  int
+	Id     int
+	Url_id int
+	Count  int
+}
+
+func NewCheck(url_id int) Check {
+	return Check{0, url_id, 0}
 }

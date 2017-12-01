@@ -40,9 +40,8 @@ func (handler *SQLHandler) getUrl(u string) (bool, *model.Url) {
 		} else {
 			log.Fatal(err)
 		}
-	} else {
-		return false, &url
 	}
+	return false, &url
 }
 
 func (handler *SQLHandler) updateCheck(u model.Url) error {

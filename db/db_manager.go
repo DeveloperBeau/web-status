@@ -2,13 +2,14 @@ package db
 
 import "web-status/db/model"
 
-type dbHandler interface {
-	AddUrl(model.Url)          //error
-	AddResult(model.Url, bool) //error
-	updateCheck(model.Url)     //error
+type Handler interface {
+	AddUrl(model.Url) error
+	AddResult(model.Url, bool) error
+	updateCheck(model.Url) error
+	getUrl(u string) (bool, *model.Url)
 }
 
-//factory function
-func GetDatabaseHandler(connection string) (dbHandler, error) {
+//Database factory function
+func MakeDatabaseHandler(connection string) (Handler, error) {
 	return NewPQHandler(connection)
 }

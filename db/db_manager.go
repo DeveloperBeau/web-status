@@ -9,7 +9,7 @@ type Handler interface {
 	getUrl(u string) (bool, *model.Url)
 }
 
-//Database factory function
+//Database Handler factory function
 func MakeDatabaseHandler(connection string) (Handler, error) {
 	return NewPQHandler(connection)
 }

@@ -6,7 +6,6 @@ type Handler interface {
 	AddUrl(model.Url) error
 	AddResult(model.Url, bool) error
 	updateCheck(model.Url) error
-	getUrl(u string) (bool, *model.Url)
 }
 
 //Database Handler factory function

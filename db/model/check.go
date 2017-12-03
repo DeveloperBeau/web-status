@@ -6,6 +6,11 @@ type Check struct {
 	Count  int
 }
 
+type CheckResponse struct {
+	Url   string
+	Count int
+}
+
 func NewCheck(url_id int) Check {
 	return Check{0, url_id, 0}
 }

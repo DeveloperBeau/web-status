@@ -31,17 +31,17 @@ func (handler *SQLHandler) AddResult(u model.Url, result bool) error {
 }
 
 //Checks if Url exists
-func (handler *SQLHandler) getUrl(u string) (bool, *model.Url) {
+func (handler *SQLHandler) getUrl(u string) *model.Url {
 	var url model.Url
 	err := handler.DB.QueryRow("select * from url where url = $1", u).Scan(&url.Id, &url.Url)
 	if err != nil {
 		if err == sql.ErrNoRows {
-			return false, nil
+			return nil
 		} else {
 			log.Fatal(err)
 		}
 	}
-	return false, &url
+	return &url
 }
 
 func (handler *SQLHandler) updateCheck(u model.Url) error {

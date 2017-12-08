@@ -12,7 +12,7 @@ type SQLHandler struct {
 }
 
 // adds a URL to the database and sets up count
-func (handler *SQLHandler) AddUrl(u model.Url) error {
+func (handler SQLHandler) AddUrl(u model.Url) error {
 	_, err := handler.Exec(fmt.Sprintf("Insert into url (url) values ('%s')", u.Url))
 	if err == nil {
 		_, err := handler.Exec(fmt.Sprintf("Insert into count (url,count) values ('%s',0)", u.Url))

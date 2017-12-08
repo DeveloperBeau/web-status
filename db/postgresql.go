@@ -3,18 +3,13 @@ package db
 import (
 	"database/sql"
 
+	//Importing postgresql framework
 	_ "github.com/lib/pq"
 )
 
-type PQHandler struct {
-	*SQLHandler
-}
-
-func NewPQHandler(connection string) (*PQHandler, error) {
+func NewSQLHandler(connection string) (*SQLHandler, error) {
 	db, err := sql.Open("postgres", connection)
-	return &PQHandler{
-		SQLHandler: &SQLHandler{
-			DB: db,
-		},
+	return &SQLHandler{
+		DB: db,
 	}, err
 }

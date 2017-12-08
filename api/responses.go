@@ -30,7 +30,7 @@ type getResultRequest struct {
 }
 
 type getResultResponse struct {
-	r   model.Result `json:"result,omitempty"`
+	R   model.Result `json:"result,omitempty"`
 	Err error        `json:"err,omitempty"`
 }
 
@@ -52,7 +52,7 @@ type getCountRequest struct {
 }
 
 type getCountResponse struct {
-	c   model.CheckResponse `json:"count"`
+	C   model.CheckResponse `json:"count"`
 	Err error               `json:"err,omitempty"`
 }
 

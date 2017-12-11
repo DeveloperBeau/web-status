@@ -1,0 +1,42 @@
+-- auto-generated definition
+CREATE TABLE url
+(
+  id  SERIAL NOT NULL
+    CONSTRAINT url_pkey
+    PRIMARY KEY,
+  url TEXT   NOT NULL
+);
+
+CREATE UNIQUE INDEX url_url_uindex
+  ON url (url);
+
+-- auto-generated definition
+CREATE TABLE result
+(
+  id     SERIAL  NOT NULL
+    CONSTRAINT results_pkey
+    PRIMARY KEY,
+  url_id INTEGER NOT NULL
+    CONSTRAINT url_id
+    REFERENCES url,
+  result BOOLEAN NOT NULL
+);
+
+-- auto-generated definition
+CREATE TABLE count
+(
+  id     SERIAL  NOT NULL
+    CONSTRAINT table_name_pkey
+    PRIMARY KEY,
+  url_id INTEGER NOT NULL
+    CONSTRAINT table_name_url_id_fk
+    REFERENCES url,
+  count  INTEGER NOT NULL
+);
+
+CREATE UNIQUE INDEX table_name_id_uindex
+  ON count (id);
+
+CREATE UNIQUE INDEX table_name_url_id_uindex
+  ON count (url_id);
+

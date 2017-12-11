@@ -2,11 +2,14 @@ package api
 
 import "net/url"
 
-func IsValidUrl(toTest string) bool {
-	_, err := url.ParseRequestURI(toTest)
+func IsValidUrl(u string) (string, error) {
+	_, err := url.ParseRequestURI(u)
 	if err != nil {
-		return false
-	} else {
-		return true
+		u = "http://" + u
+		_, err := url.ParseRequestURI(u)
+		if err != nil {
+			return "", ErrCorruptData
+		}
 	}
+	return u, nil
 }

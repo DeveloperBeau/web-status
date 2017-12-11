@@ -46,11 +46,12 @@ func decodePostWebAddressRequest(_ context.Context, r *http.Request) (request in
 		return nil, ErrBadRouting
 		log.Println("returned post decode request failed")
 	}
-	if !IsValidUrl(url) {
-		return nil, ErrCorruptData
+	u, err := IsValidUrl(url)
+	if err != nil {
+		return nil, err
 	} else {
 		log.Println("returned post decode request")
-		return postWebAddressRequest{Url: url}, nil
+		return postWebAddressRequest{Url: u}, nil
 	}
 }
 

@@ -15,7 +15,12 @@ type SQLHandler struct {
 func (handler SQLHandler) AddUrl(u model.Url) error {
 	_, err := handler.Exec(fmt.Sprintf("Insert into url (url) values ('%s')", u.Url))
 	if err == nil {
-		_, err := handler.Exec(fmt.Sprintf("Insert into count (url,count) values ('%s',0)", u.Url))
+		var url model.Url
+		err := handler.DB.QueryRow("select * from url where url = $1", u.Url).Scan(&url.Id, &url.Url)
+		if err != nil {
+			return err
+		}
+		_, err = handler.Exec(fmt.Sprintf("Insert into count (url_id,count) values ('%d',0)", url.Id))
 		return err
 	}
 	return err

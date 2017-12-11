@@ -10,7 +10,7 @@ import (
 	"log"
 )
 
-var s Service
+var s serviceHandler
 
 func Run(endpoint string, db db.Handler) error {
 	r := RunAPIOnRouter(db)

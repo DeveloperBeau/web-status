@@ -1,10 +1,11 @@
 -- auto-generated definition
 CREATE TABLE url
 (
-  id  SERIAL NOT NULL
+  id        SERIAL NOT NULL
     CONSTRAINT url_pkey
     PRIMARY KEY,
-  url TEXT   NOT NULL
+  url       TEXT   NOT NULL,
+  isenabled BOOLEAN DEFAULT TRUE
 );
 
 CREATE UNIQUE INDEX url_url_uindex

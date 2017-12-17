@@ -14,17 +14,6 @@ type postWebAddressResponse struct {
 
 func (r postWebAddressResponse) error() error { return r.Err }
 
-type getWebAddressRequest struct {
-	ID string
-}
-
-type getWebAddressResponse struct {
-	Url model.Url `json:"url,omitempty"`
-	Err error     `json:"err,omitempty"`
-}
-
-func (r getWebAddressResponse) error() error { return r.Err }
-
 type getResultRequest struct {
 	ID string
 }
@@ -42,6 +31,7 @@ type postResultRequest struct {
 }
 
 type postResultResponse struct {
+	Rid string `json:"result_id,omitempty"`
 	Err error `json:"err,omitempty"`
 }
 

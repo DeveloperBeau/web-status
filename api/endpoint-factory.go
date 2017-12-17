@@ -12,19 +12,9 @@ import (
 // Primarily useful in a server.
 func MakePostWebAddressEndpoint(s Service, handler db.Handler) endpoint.Endpoint {
 	return func(ctx context.Context, request interface{}) (response interface{}, err error) {
-		log.Println("endpoint hit")
 		req := request.(postWebAddressRequest)
 		e := s.PostWebAddress(ctx, handler, req.Url)
-		log.Println("endpoint returned")
 		return postWebAddressResponse{Err: e}, nil
-	}
-}
-
-// MakeGetProfileEndpoint returns an endpoint via the passed service.
-// Primarily useful in a server.
-func MakeGetWebAddressEndpoint(s Service, handler db.Handler) endpoint.Endpoint {
-	return func(ctx context.Context, request interface{}) (response interface{}, err error) {
-		return request, nil
 	}
 }
 

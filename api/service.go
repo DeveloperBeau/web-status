@@ -63,18 +63,15 @@ func (sh serviceHandler) GetCount(ctx context.Context, handler db.Handler, id st
 //Decoders
 
 func decodePostWebAddressRequest(_ context.Context, r *http.Request) (request interface{}, err error) {
-	log.Println("recieved post decode request")
 	vars := mux.Vars(r)
 	url, ok := vars["webAddress"]
 	if !ok {
 		return nil, ErrBadRouting
-		log.Println("returned post decode request failed")
 	}
 	u, err := IsValidUrl(url)
 	if err != nil {
 		return nil, err
 	} else {
-		log.Println("returned post decode request")
 		return postWebAddressRequest{Url: u}, nil
 	}
 }
@@ -82,16 +79,13 @@ func decodePostWebAddressRequest(_ context.Context, r *http.Request) (request in
 //Encoders
 
 func encodeResponse(ctx context.Context, w http.ResponseWriter, response interface{}) error {
-	log.Println("recieved post encode request")
 	if e, ok := response.(e); ok && e.error() != nil {
 		// Not a Go kit transport error, but a business-logic error.
 		// Provide those as HTTP errors.
-		log.Println("recieved post encode error request")
 		encodeError(ctx, e.error(), w)
 		return nil
 	}
 	w.Header().Set("Content-Type", "application/json; charset=utf-8")
-	log.Println("recieved post encode success request")
 	return json.NewEncoder(w).Encode(response)
 }
 
